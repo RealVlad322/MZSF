@@ -1,0 +1,52 @@
+{
+  "ignorePatterns": ["dist/", "node_modules/", ".eslintrc"],
+  "root": true,
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "plugins": ["@evojs"],
+  "extends": ["plugin:@evojs/ecmascript", "plugin:@evojs/react"],
+  "parserOptions": {
+    "ecmaVersion": 2021,
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "rules": {},
+  "overrides": [
+    {
+      "files": ["**/*.{ts,tsx}"],
+      "plugins": ["@evojs"],
+      "extends": ["plugin:@evojs/typescript"],
+      "parserOptions": {
+        "project": ["./tsconfig.json", "./tsconfig.node.json"],
+        "sourceType": "module"
+      },
+      "rules": {
+        "@typescript-eslint/no-misused-promises": "off",
+        "import/no-named-as-default": "off",
+        "react/display-name": "off",
+        "react-hooks/exhaustive-deps": [
+          "warn",
+          {
+            "additionalHooks": "(usePromise)"
+          }
+        ],
+        "no-restricted-imports": [
+          "warn",
+          {
+            "paths": [".", "..", "../..", "../../.."],
+            "patterns": ["src/**", "**/../shared/**", "**/../features/**", "**/../app/**"]
+          }
+        ],
+        "no-mixed-operators": "off"
+      }
+    }
+  ],
+  "settings": {
+    "react": {
+      "version": "18"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "ignoreFiles": ["public/**/*", "dist/**/*", "node_modules/**/*"],
+  "plugins": ["stylelint-order"],
+  "extends": ["stylelint-config-standard-scss"],
+  "syntax": "scss",
+  "rules": {
+    "alpha-value-notation": "number",
+    "at-rule-no-unknown": [true, { "ignoreAtRules": ["include", "mixin", "use"] }],
+    "block-no-empty": null,
+    "declaration-block-no-shorthand-property-overrides": null,
+    "font-family-no-missing-generic-family-keyword": null,
+    "font-weight-notation": "numeric",
+    "function-no-unknown": null,
+    "function-url-quotes": null,
+    "indentation": 2,
+    "no-descending-specificity": null,
+    "no-empty-source": null,
+    "scss/no-global-function-names": null,
+    "no-invalid-position-at-import-rule": null,
+    "number-leading-zero": "never",
+    "order/properties-alphabetical-order": true,
+    "property-no-vendor-prefix": null,
+    "selector-class-pattern": null,
+    "selector-pseudo-class-no-unknown": null,
+    "selector-pseudo-element-no-unknown": null,
+    "selector-type-no-unknown": null,
+    "string-quotes": "single"
+  }
+}
