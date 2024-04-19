@@ -1,7 +1,6 @@
 import { emailValidate, passwordValidate } from '@/shared/lib/regExps';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Divider from '@mui/material/Divider';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
@@ -39,10 +38,12 @@ export const SignInFeature: FC<SignInFeatureProps> = (props) => {
   return (
     <div className={$.container}>
       <Box component="form">
-        <Stack gap="20px" alignItems="center">
+        <Stack mb="50px" alignItems="center">
           <Typography className={$.title} variant="h2">
-            Авторизация
+            Login
           </Typography>
+        </Stack>
+        <Stack mb="50px" gap="20px" alignItems="center">
           <TextField
             error={mail ? !isValidMail : false}
             helperText={mail && !isValidMail ? validTextMail : undefined}
@@ -61,19 +62,32 @@ export const SignInFeature: FC<SignInFeatureProps> = (props) => {
             value={pwd}
             fullWidth
             type="password"
-            label="Пароль"
+            label="Password"
           />
-          <Button
-            type="submit"
-            disabled={!pwd || !mail}
-            className={$.button}
-            variant="contained"
-            color="success"
-          >
-            Войти
-          </Button>
-          <Divider variant="middle" />
-          <Link>Забыли пароль?</Link>
+        </Stack>
+        <Stack gap="40px" alignItems="center">
+          <Stack width="100%" justifyContent="space-between" flexBasis="50%" flexDirection="row">
+            <Button
+              type="submit"
+              disabled={!pwd || !mail}
+              fullWidth
+              className={$.buttons}
+              variant="contained"
+              color="success"
+            >
+            Log In
+            </Button>
+            <Button
+              type="button"
+              fullWidth
+              className={$.buttons}
+              variant="contained"
+              color="primary"
+            >
+            Sign Up
+            </Button>
+          </Stack>
+          <Link>Forgot password?</Link>
         </Stack>
       </Box>
     </div>
