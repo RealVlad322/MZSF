@@ -1,20 +1,7 @@
 // import { Layout } from '@/shared/components';
 import { Navigate, type RouteObject } from 'react-router-dom';
 
-import { SignInPage } from '../pages';
-
-// import {
-//   AdminPage,
-//   ApprovePage,
-//   CampaignPage,
-//   ChangePasswordPage,
-//   EmailApprovePage,
-//   ProductPage,
-//   ProductsPage,
-//   ResetPasswordPage,
-//   SigninPage,
-//   SignupPage,
-// } from '../pages';
+import { MainPage } from '../pages';
 
 export const routes: RouteObject[] = [
   {
@@ -22,7 +9,7 @@ export const routes: RouteObject[] = [
     children: [
       {
         path: '/',
-        element: '#',
+        element: <MainPage/>,
       },
       {
         path: '/:article',
@@ -39,19 +26,6 @@ export const routes: RouteObject[] = [
       {
         path: '*',
         element: <Navigate to="/" />,
-      },
-    ],
-  },
-  {
-    path: '/auth',
-    children: [
-      {
-        path: '',
-        element: <Navigate to="signin" />,
-      },
-      {
-        path: 'signin',
-        element: <SignInPage />,
       },
     ],
   },

@@ -1,1 +1,1 @@
-export * from './auth/sing-in/sign-in.page';
+export * from './main/main.page';

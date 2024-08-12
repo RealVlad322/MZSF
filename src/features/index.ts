@@ -1,1 +1,2 @@
-export * from './auth/sing-in/sign-in.feature';
+export * from './main/main.feature';
+export * from './main/main.store';
