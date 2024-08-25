@@ -1,5 +1,5 @@
 # Указываем базовый образ
-FROM node:20 as build
+FROM node:22 as build
 
 # Устанавливаем рабочую директорию внутри контейнера
 WORKDIR /app
