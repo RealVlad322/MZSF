@@ -1,5 +1,5 @@
 # Указываем базовый образ
-FROM node:20-bullseye-slim
+FROM node:20 as build
 
 # Устанавливаем рабочую директорию внутри контейнера
 WORKDIR /app
