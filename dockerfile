@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Устанавливаем зависимости
-RUN npm install --verbose
+RUN npm install
 
 # Копируем все файлы в рабочую директорию
 COPY . .
