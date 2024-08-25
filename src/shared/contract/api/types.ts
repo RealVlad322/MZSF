@@ -47,3 +47,50 @@ export interface ProfileConfirmPasswordDto {
 
   hash: string;
 }
+
+export interface SubjectDto {
+  index: number;
+
+  name: string;
+
+  type: string;
+
+  place: string;
+
+  teacher: string;
+}
+
+export interface SheduleOut {
+  grade: number;
+
+  faculty: string;
+
+  name: string;
+
+  group: number;
+
+  subgroup?: number;
+
+  date: string;
+
+  subjects: SubjectDto[];
+}
+
+export interface SheduleGetListDto {
+  grade: number;
+
+  name: string;
+
+  group: number;
+
+  startTimeStamp: string;
+
+  endTimeStamp: string;
+
+  sortByDate?: Directions;
+}
+
+export enum Directions {
+  ASC = 'asc',
+  DESC = 'desc',
+}

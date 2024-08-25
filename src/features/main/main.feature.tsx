@@ -1,18 +1,19 @@
-import { type FC, useState } from 'react';
+import { useInjection } from '@/app/ioc';
+import { observer } from 'mobx-react-lite';
+import { type FC } from 'react';
 
+import { MainStore } from './main.store';
+import { Settingsfeature } from './settings/settings.feature';
 import { Tablefeature } from './table/table.feature';
 
-export const MainFeature: FC<MainFeatureProps> = (props) => {
+export const MainFeature: FC<MainFeatureProps> = observer((props) => {
   const {} = props;
 
-  const [isOpen, setIsOpen] = useState(false);
+  const main$ = useInjection(MainStore);
 
-  return (<div>
-    <button onClick={() => setIsOpen(!isOpen)}></button>
-		Hello Main Feature
-    <Tablefeature/>
-  </div>);
-};
+  const { showSubjects } = main$;
 
-export interface MainFeatureProps {
-}
+  return <div>{showSubjects ? <Tablefeature /> : <Settingsfeature />}</div>;
+});
+
+export interface MainFeatureProps {}

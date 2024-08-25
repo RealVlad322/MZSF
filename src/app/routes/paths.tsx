@@ -1,11 +1,12 @@
 // import { Layout } from '@/shared/components';
+import { Layout } from '@/shared/components/layout.component';
 import { Navigate, type RouteObject } from 'react-router-dom';
 
 import { MainPage } from '../pages';
 
 export const routes: RouteObject[] = [
   {
-    element: '#',
+    element: <Layout/>,
     children: [
       {
         path: '/',

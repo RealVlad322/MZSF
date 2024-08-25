@@ -88,8 +88,8 @@ export class HttpAgent {
           ...'json' in options && { 'Content-Type': 'application/json; charset=utf-8' },
           ...headers,
         },
-        // mode: 'cors',
-        // credentials: 'same-origin',
+        // mode: 'no-cors',
+        // credentials: 'include',
         // referrerPolicy: 'no-referrer',
         body:
           'json' in contentOptions

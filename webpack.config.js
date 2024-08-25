@@ -9,7 +9,7 @@ const { join } = require('path');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const { DefinePlugin } = require('webpack');
 
-// const GenerateVersionFilePlugin = require('./webpack-plugin');
+// const VersionJsonPlugin = require('./webpack-plugin');
 // const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const cwd = (p) => p ? join(__dirname, p) : __dirname;
@@ -133,7 +133,7 @@ module.exports = [
     },
     plugins: [
       // new BundleAnalyzerPlugin(),
-      // new GenerateVersionFilePlugin(),
+      // new VersionJsonPlugin(),
       new HtmlPlugin({
         template: cwd('src/index.html'),
       }),
