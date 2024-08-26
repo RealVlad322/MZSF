@@ -62,5 +62,5 @@ jobs:
           docker stop frontend || true && docker rm frontend || true
 
           # Запускаем новый контейнер
-          docker run -d --name frontend -p 80:80 $DOCKER_HUB_USERNAME/frontend:latest
+          docker run -d --name frontend -p 3000:80 $DOCKER_HUB_USERNAME/frontend:latest
         EOF
