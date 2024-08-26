@@ -55,9 +55,6 @@ jobs:
 
         # Подключаемся к серверу и запускаем Docker контейнер
         ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_HOST << 'EOF'
-          # Входим в Docker Hub
-          echo "$DOCKER_HUB_ACCESS_TOKEN" | docker login --username $DOCKER_HUB_USERNAME --password-stdin
-
           # Останавливаем и удаляем старый контейнер
           docker stop frontend || true && docker rm frontend || true
 
