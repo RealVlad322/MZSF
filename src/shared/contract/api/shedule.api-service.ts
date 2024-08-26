@@ -12,7 +12,7 @@ export class SheduleApiService {
   }
 
   async getList(body: SheduleGetListDto): Promise<SheduleOut[]> {
-    const result = await this.http$.post<SheduleOut[]>('http://mstuca-schedule.ru/service2/shedule/shedules', {
+    const result = await this.http$.post<SheduleOut[]>('https://mstuca-schedule.ru/service2/shedule/shedules', {
       json: body,
     });
 
