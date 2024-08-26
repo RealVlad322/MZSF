@@ -60,5 +60,5 @@ jobs:
           docker pull therealyou322/frontend:latest
 
           # Запускаем новый контейнер
-          docker run -d --name frontend -p 3000:80 $DOCKER_HUB_USERNAME/frontend:latest
+          docker run -d --name frontend -p 3000:80 therealyou322/frontend:latest
         EOF
