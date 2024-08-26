@@ -56,8 +56,8 @@ jobs:
         # Подключаемся к серверу и запускаем Docker контейнер
         ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_HOST << 'EOF'
           # Останавливаем и удаляем старый контейнер
-          docker pull therealyou322/frontend:latest
           docker stop frontend || true && docker rm frontend || true
+          docker pull therealyou322/frontend:latest
 
           # Запускаем новый контейнер
           docker run -d --name frontend -p 3000:80 $DOCKER_HUB_USERNAME/frontend:latest
