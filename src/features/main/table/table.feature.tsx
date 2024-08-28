@@ -29,15 +29,28 @@ export const Tablefeature: FC<TableFeatureProps> = observer((props) => {
 
   return (
     <div className={$.test}>
-      <Button
-        sx={{ mb: '20px' }}
-        onClick={() => {
-          void main$.loadShedules();
-        }}
-      >
-        Get
-      </Button>
-      <Button sx={{ mb: '20px' }} variant="outlined">След неделя</Button>
+      {!!shedules.length && (
+        <Stack flexDirection="row" gap="5px" alignItems="center">
+          <Button
+            onClick={() => {
+              void main$.loadShedulesNextWeek();
+            }}
+            sx={{ mt: '20px', alignSelf: 'center' }}
+            variant="outlined"
+          >
+          След неделя
+          </Button>
+          <Button
+            onClick={() => {
+              main$.setShowSubjects(false);
+            }}
+            sx={{ mt: '20px', alignSelf: 'center' }}
+            variant="outlined"
+          >
+          назад
+          </Button>
+        </Stack>
+      )}
       <Stack flexDirection="row" gap="15px" justifyContent="center" flexWrap="wrap">
         {shedules.map((s) => {
           const dayOfWeek = DayOfWeek[new Date(s.date).getDay()];
@@ -55,8 +68,6 @@ export const Tablefeature: FC<TableFeatureProps> = observer((props) => {
               </Stack>
               <Divider />
               {s.subjects.map((sub, index) => {
-                console.log(sub.teacher);
-
                 const name = sub.name ? sub.name : sub.place.includes('Спортзал') ? 'Физ-ра' : null;
                 const isDangerous = sub.teacher.includes('Емельянов');
 
@@ -81,7 +92,26 @@ export const Tablefeature: FC<TableFeatureProps> = observer((props) => {
           );
         })}
       </Stack>
-      <Button sx={{ mt: '20px', alignSelf: 'center' }} variant="outlined">След неделя</Button>
+      <Stack flexDirection="row" gap="5px" alignItems="center">
+        <Button
+          onClick={() => {
+            void main$.loadShedulesNextWeek();
+          }}
+          sx={{ mt: '20px', alignSelf: 'center' }}
+          variant="outlined"
+        >
+          След неделя
+        </Button>
+        <Button
+          onClick={() => {
+            main$.setShowSubjects(false);
+          }}
+          sx={{ mt: '20px', alignSelf: 'center' }}
+          variant="outlined"
+        >
+          назад
+        </Button>
+      </Stack>
     </div>
   );
 });

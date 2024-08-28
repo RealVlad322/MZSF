@@ -1,7 +1,6 @@
 import { Directions, type SheduleOut } from '@/shared/contract/api/types';
 import { SheduleService } from '@/shared/contract/services';
-import { endOfTomorrow, startOfToday, startOfTomorrow } from 'date-fns';
-import subDays from 'date-fns/subDays';
+import { endOfTomorrow, endOfWeek, startOfToday, startOfTomorrow, startOfWeek } from 'date-fns';
 import { injectable } from 'inversify';
 import { makeAutoObservable } from 'mobx';
 
@@ -10,11 +9,11 @@ export class MainStore {
   // объявление полей, которые нужны в разных фичах
   shedules: SheduleOut[] = [];
   showSubjects: boolean = false;
-  grade: number = 3;
-  name: string = 'БИС';
+  grade: number = 4;
+  name: string = 'БИТ211';
   group: number = 1;
-  startTimeStamp: string = '2024-02-01';
-  endTimeStamp: string = '2024-02-01';
+  startTimeStamp: string = startOfToday().toISOString();
+  endTimeStamp: string = startOfToday().toISOString();
   constructor(private readonly shedule$$: SheduleService) {
     makeAutoObservable(this);
   }
@@ -44,8 +43,8 @@ export class MainStore {
   }
 
   async loadShedulesThisWeek(): Promise<void> {
-    this.startTimeStamp = subDays(startOfToday(), 7).toISOString();
-    this.endTimeStamp = startOfTomorrow().toISOString();
+    this.startTimeStamp = startOfWeek(startOfToday(), { weekStartsOn: 1 }).toISOString();
+    this.endTimeStamp = endOfWeek(startOfToday(), { weekStartsOn: 1 }).toISOString();
 
     await this.loadShedules();
   }
@@ -65,8 +64,16 @@ export class MainStore {
   }
 
   async loadShedulesNextWeek(): Promise<void> {
-    this.startTimeStamp = subDays(startOfTomorrow(), 7).toISOString();
-    this.endTimeStamp = startOfTomorrow().toISOString();
+    const nextWeekStart = +startOfToday() + 7 * 24 * 60 * 60 * 1000;
+
+    if (this.startTimeStamp === startOfWeek(nextWeekStart, { weekStartsOn: 1 }).toISOString()) {
+      this.endTimeStamp = endOfWeek(+new Date(this.startTimeStamp) + 7 * 24 * 60 * 60 * 1000, { weekStartsOn: 1 }).toISOString();
+      this.startTimeStamp = startOfWeek(+new Date(this.startTimeStamp) + 7 * 24 * 60 * 60 * 1000, { weekStartsOn: 1 }).toISOString();
+    } else {
+      const nextWeekStart = +startOfToday() + 7 * 24 * 60 * 60 * 1000;
+      this.startTimeStamp = startOfWeek(nextWeekStart, { weekStartsOn: 1 }).toISOString();
+      this.endTimeStamp = endOfWeek(nextWeekStart, { weekStartsOn: 1 }).toISOString();
+    }
 
     await this.loadShedules();
   }

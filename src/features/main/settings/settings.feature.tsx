@@ -82,7 +82,6 @@ export const Settingsfeature: FC<SettingsFeature> = observer((props) => {
           <Button
             className={$.buttons}
             variant="outlined"
-            disabled
             onClick={() => {
               void main$.loadShedulesNextWeek();
               main$.setShowSubjects(true);

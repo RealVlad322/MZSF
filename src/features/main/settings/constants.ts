@@ -8,7 +8,7 @@ export const GRADE_SELECT_ITEMS = [
 ];
 
 export const DIRECTION_SELECT_ITEMS = [
-  { value: 'БИС', name: 'БИС' },
+  { value: 'БИТ211', name: 'БИС' },
   { value: 'ПМ', name: 'ПМ' },
   { value: 'PMses', name: 'ПМб' },
   { value: 'ЭВМ', name: 'ЭВМ' },
