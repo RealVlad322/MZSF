@@ -30,12 +30,12 @@ export const Tablefeature: FC<TableFeatureProps> = observer((props) => {
   return (
     <div className={$.test}>
       {!!shedules.length && (
-        <Stack flexDirection="row" gap="5px" alignItems="center">
+        <Stack flexDirection="row" gap="5px" mb="20px" alignItems="center">
           <Button
             onClick={() => {
               void main$.loadShedulesNextWeek();
             }}
-            sx={{ mt: '20px', alignSelf: 'center' }}
+            // sx={{ mt: '20px', alignSelf: 'center' }}
             variant="outlined"
           >
           След неделя
@@ -44,7 +44,7 @@ export const Tablefeature: FC<TableFeatureProps> = observer((props) => {
             onClick={() => {
               main$.setShowSubjects(false);
             }}
-            sx={{ mt: '20px', alignSelf: 'center' }}
+            // sx={{ mt: '20px', alignSelf: 'center' }}
             variant="outlined"
           >
           назад
@@ -56,7 +56,7 @@ export const Tablefeature: FC<TableFeatureProps> = observer((props) => {
           const dayOfWeek = DayOfWeek[new Date(s.date).getDay()];
 
           return (
-            <Card sx={{ padding: '15px 10px' }} key={s.date}>
+            <Card sx={{ padding: '15px 10px', width: '100%' }} key={s.date}>
               <Stack flexDirection="row" gap="5px" alignItems="center">
                 <Typography variant="subtitle2">
                   {dayOfWeek} {formatDate(s.date)}
