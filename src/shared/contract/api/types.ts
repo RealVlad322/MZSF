@@ -58,30 +58,44 @@ export interface SubjectDto {
   place: string;
 
   teacher: string;
+
+  groupName: string;
 }
 
 export interface SheduleOut {
   grade: number;
 
-  faculty: string;
+  faculty?: string;
 
-  name: string;
+  groupName: string;
 
   group: number;
 
-  subgroup?: number;
+  subgroup?: string;
 
   date: string;
 
-  subjects: SubjectDto[];
+  index: number;
+
+  discipline: string;
+
+  type: string;
+
+  place: string;
+
+  address?: string;
+
+  teacher: string;
 }
 
 export interface SheduleGetListDto {
-  grade: number;
+  grade?: number;
 
-  name: string;
+  groupName?: string;
 
-  group: number;
+  group?: number;
+
+  teacher?: string;
 
   startTimeStamp: string;
 

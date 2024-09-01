@@ -21,3 +21,8 @@ export const GROUP_SELECT_ITEMS = [
   { value: 2, name: 2 },
   { value: 3, name: 3 },
 ];
+
+export const TEACHER_SELECT_ITEMS = [
+  { value: 'Сбитнев А.В.', name: 'Сбитнев А.В.' },
+  { value: 'Емельянов В.Е.', name: 'Емельянов В.Е.' },
+];

@@ -1,14 +1,15 @@
 .main {
 	padding: 15px;
+	// height: 100vh;
 }
 
 .footer {
 	background-color: #f9f9f9;
 	z-index: 12;
-	position: sticky;
+	position: fixed;
 	padding-left: 15px;
 	border-top: 1px solid #e2e2e2;
 	// height: 35px;
 	width: 100%;
-	bottom: 0px;
+	bottom: 0;
 }
