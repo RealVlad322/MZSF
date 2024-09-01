@@ -23,6 +23,7 @@ export const GROUP_SELECT_ITEMS = [
 ];
 
 export const TEACHER_SELECT_ITEMS = [
-  { value: 'Сбитнев А.В.', name: 'Сбитнев А.В.' },
+  { value: 'Антонов А.А.', name: 'Антонов А.А.' },
   { value: 'Емельянов В.Е.', name: 'Емельянов В.Е.' },
+  { value: 'Сбитнев А.В.', name: 'Сбитнев А.В.' },
 ];
