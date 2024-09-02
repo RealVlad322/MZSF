@@ -107,7 +107,7 @@ export const TableTeacherFeature: FC<TableTeacherFeatureProps> = observer((props
           // console.log(new Date(+new Date(s.date) + 3 * 60 * 60 * 1000).getDay(), s.date);
 
           return (
-            <Card sx={{ padding: '15px 10px', width: '16%', minWidth: '312px' }} key={s.date}>
+            <Card sx={{ padding: '15px 10px', width: '16%', minWidth: '300px' }} key={s.date}>
               <Stack flexDirection="row" gap="5px" alignItems="center">
                 <Typography variant="subtitle2">
                   {dayOfWeek} {formatDate(s.date)}

@@ -65,6 +65,7 @@ export const TableStudentFeature: FC<TableStudentFeatureProps> = observer((props
 
                 return (
                   <Stack
+                    mb={index + 1 === s.subjects.length ? undefined : '10px'}
                     sx={{ backgroundColor: isDangerous ? 'rgb(255, 0, 0, 0.5)' : undefined }}
                     key={sub.index}
                   >
@@ -73,7 +74,7 @@ export const TableStudentFeature: FC<TableStudentFeatureProps> = observer((props
                       <Typography className={$.subjcetCaption}>{sub.place}</Typography>
                     </Stack>
                     <Typography className={$.subjcetCaption}>
-                      {sub.teacher} {sub.type}
+                      {sub.teacher} <u>{sub.type}</u>
                     </Typography>
                     <Typography className={$.subjectName}>{name}</Typography>
                     {index === s.subjects.length - 1 ? null : <Divider />}
