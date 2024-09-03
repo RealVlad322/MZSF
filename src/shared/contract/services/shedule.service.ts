@@ -74,16 +74,24 @@ export class SheduleService {
     const groupedByDate = Object.entries(groupBy(result, 'date'));
 
     const mappedResult = groupedByDate.map(([date, val]) => {
-      const subjects = val.map<SubjectDto>((s) => {
-        const tempName = s.groupName ?? s.subgroup;
+      const subjects = new Array(6).fill({}).map<SubjectDto>((t, i) => {
+        const s = val.find((v) => v.index === i + 1);
+
+        if (s) {
+          const tempName = s.groupName ?? s.subgroup;
+
+          return {
+            index: s.index,
+            place: s.place,
+            type: s.type,
+            teacher: s.teacher,
+            name: s.discipline,
+            groupName: tempName ? renameVoc[tempName.split(';')[0]] : '',
+          };
+        }
 
         return {
-          index: s.index,
-          place: s.place,
-          type: s.type,
-          teacher: s.teacher,
-          name: s.discipline,
-          groupName: tempName ? renameVoc[tempName.split(';')[0]] : '',
+          index: i + 1,
         };
       }).sort((a, b) => a.index - b.index);
       const tempName = val.at(0)?.groupName ?? val.at(0)?.subgroup;

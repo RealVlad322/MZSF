@@ -113,8 +113,6 @@ export class MainStore {
       sortByDate: Directions.DESC,
     });
 
-    console.log(result);
-
     this.shedules = result;
   }
 

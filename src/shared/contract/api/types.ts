@@ -51,15 +51,15 @@ export interface ProfileConfirmPasswordDto {
 export interface SubjectDto {
   index: number;
 
-  name: string;
+  name?: string;
 
-  type: string;
+  type?: string;
 
-  place: string;
+  place?: string;
 
-  teacher: string;
+  teacher?: string;
 
-  groupName: string;
+  groupName?: string;
 }
 
 export interface SheduleOut {

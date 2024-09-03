@@ -31,12 +31,15 @@ export const TableTeacherFeature: FC<TableTeacherFeatureProps> = observer((props
       const nextDayIndex = new Date(nextShedule.date).getDay();
 
       if (DayOfWeek[nextDayIndex - 1] !== dayOfWeek) {
+        const subjects = new Array(6).fill({}).map((v, i) => ({
+          index: i + 1,
+        }));
         arr.splice(i + 1, 0, {
           date: new Date(+new Date(s.date) + 24 * 60 * 60 * 1000).toISOString().slice(0, 10),
           name: 'test',
           grade: 0,
           group: 0,
-          subjects: [],
+          subjects,
           faculty: '',
         });
       }
@@ -51,27 +54,31 @@ export const TableTeacherFeature: FC<TableTeacherFeatureProps> = observer((props
     if (prevShedule && i !== 0) {
       const prevDayIndex = new Date(prevShedule.date).getDay();
 
-      if (s.date === '2024-09-06') {
-        console.log(dayOfWeek, prevDayIndex, prevShedule);
-      }
-
       if (DayOfWeek[prevDayIndex + 1] !== dayOfWeek) {
+        const subjects = new Array(6).fill({}).map((v, i) => ({
+          index: i + 1,
+
+        }));
         arr.splice(i, 0, {
           date: new Date(+new Date(s.date) - 24 * 60 * 60 * 1000).toISOString().slice(0, 10),
           name: 'test',
           grade: 0,
           group: 0,
-          subjects: [],
+          subjects,
           faculty: '',
         });
       }
     } else {
+      const subjects = new Array(6).fill({}).map((v, i) => ({
+        index: i + 1,
+
+      }));
       arr.splice(0, 0, {
         date: new Date(+new Date(s.date) - 24 * 60 * 60 * 1000).toISOString().slice(0, 10),
         name: 'test',
         grade: 0,
         group: 0,
-        subjects: [],
+        subjects,
         faculty: '',
       });
     }
@@ -81,15 +88,17 @@ export const TableTeacherFeature: FC<TableTeacherFeatureProps> = observer((props
     <div className={$.test}>
       {!!shedules.length && (
         <Stack flexDirection="row" gap="5px" pl="15px" mb="20px" alignItems="center">
-          {!fullSem && <Button
-            onClick={() => {
-              void main$.loadShedulesNextWeek();
-            }}
-            // sx={{ mt: '20px', alignSelf: 'center' }}
-            variant="outlined"
-          >
-            След неделя
-          </Button>}
+          {!fullSem && (
+            <Button
+              onClick={() => {
+                void main$.loadShedulesNextWeek();
+              }}
+              // sx={{ mt: '20px', alignSelf: 'center' }}
+              variant="outlined"
+            >
+              След неделя
+            </Button>
+          )}
           <Button
             onClick={() => {
               main$.setShowSubjects(false);
@@ -101,66 +110,73 @@ export const TableTeacherFeature: FC<TableTeacherFeatureProps> = observer((props
           </Button>
         </Stack>
       )}
-      <Stack flexDirection="row" gap="15px" justifyContent="center" mb="20px" flexWrap="wrap">
+      <Stack gap="15px" justifyContent="flex-start" mb="20px">
         {shedules.map((s) => {
           const dayOfWeek = DayOfWeek[new Date(s.date).getDay()];
-          // console.log(new Date(+new Date(s.date) + 3 * 60 * 60 * 1000).getDay(), s.date);
 
           return (
-            <Card sx={{ padding: '15px 10px', width: '16%', minWidth: '300px' }} key={s.date}>
-              <Stack flexDirection="row" gap="5px" alignItems="center">
-                <Typography variant="subtitle2">
+            <>
+              <Stack flexDirection="row" gap="20px" minHeight="102px" alignItems="center" key={s.date}>
+                <Typography sx={{ maxWidth: '90px' }} variant="subtitle2">
                   {dayOfWeek} {formatDate(s.date)}
                 </Typography>
-                <Typography variant="caption">{s.faculty}</Typography>
-              </Stack>
-              <Divider />
-              {s.subjects.length
-                ? s.subjects.map((sub, index) => {
-                  const name = sub.name
-                    ? sub.name
-                    : sub.place.includes('Спортзал')
-                      ? 'Физ-ра'
-                      : null;
+                {s.subjects.map((sub, index) => {
+                  const name = sub.name ? sub.name : null;
+
+                  if (name) {
+                    return (
+                      <Card
+                        sx={{ padding: '15px 10px', width: '16%', minHeight: '122px', minWidth: '200px' }}
+                        key={sub.index}
+                      >
+                        <Stack>
+                          <Stack flexDirection="row" gap="5px" alignItems="center">
+                            <Typography className={$.subjectIndex}>{sub.index} Пара</Typography>
+                            <Divider orientation="vertical" flexItem variant="middle" />
+                            {/* <Typography className={$.subjectIndex}>
+                            {s.grade}-{s.group} {s.name}
+                          </Typography> */}
+                            <Typography className={$.subjectIndex}>{sub.groupName}</Typography>
+                            <Divider orientation="vertical" flexItem variant="middle" />
+                            <Typography className={$.subjcetCaption}>{sub.place}</Typography>
+                          </Stack>
+                          <Typography
+                            sx={{ textDecoration: 'underline' }}
+                            className={$.subjcetCaption}
+                          >
+                            {sub.type}
+                          </Typography>
+                          <Typography className={$.subjectName}>{name}</Typography>
+                          {/* {index === s.subjects.length - 1 ? null : <Divider />} */}
+                        </Stack>
+                      </Card>
+                    );
+                  }
 
                   return (
-                    <Stack key={sub.index}>
-                      <Stack flexDirection="row" gap="5px" alignItems="center">
-                        <Typography className={$.subjectIndex}>{sub.index} Пара</Typography>
-                        <Divider orientation="vertical" flexItem variant="middle" />
-                        {/* <Typography className={$.subjectIndex}>
-                          {s.grade}-{s.group} {s.name}
-                        </Typography> */}
-                        <Typography className={$.subjectIndex}>
-                          {sub.groupName}
-                        </Typography>
-                        <Divider orientation="vertical" flexItem variant="middle" />
-                        <Typography className={$.subjcetCaption}>{sub.place}</Typography>
-                      </Stack>
-                      <Typography sx={{ textDecoration: 'underline' }} className={$.subjcetCaption}>
-                        {sub.type}
-                      </Typography>
-                      <Typography className={$.subjectName}>{name}</Typography>
-                      {index === s.subjects.length - 1 ? null : <Divider />}
-                    </Stack>
+                    <Card key={sub.index} sx={{ padding: '15px 10px', width: '16%', minHeight: '122px', minWidth: '200px' }}>
+                      <Typography>Нет пар</Typography>
+                    </Card>
                   );
-                })
-                : <Typography>Нет пар</Typography>
-              }
-            </Card>
+                })}
+              </Stack>
+              { dayOfWeek === DayOfWeek[6] ? <Divider sx={{ borderColor: '#606060' }} flexItem variant="fullWidth" /> : null}
+            </>
           );
         })}
       </Stack>
       <Stack flexDirection="row" gap="5px" pl="15px" alignItems="center">
-        {!fullSem && <Button
-          onClick={() => {
-            void main$.loadShedulesNextWeek();
-          }}
-          sx={{ mt: '20px', alignSelf: 'center' }}
-          variant="outlined"
-        >
-          След неделя
-        </Button>}
+        {!fullSem && (
+          <Button
+            onClick={() => {
+              void main$.loadShedulesNextWeek();
+            }}
+            sx={{ mt: '20px', alignSelf: 'center' }}
+            variant="outlined"
+          >
+            След неделя
+          </Button>
+        )}
         <Button
           onClick={() => {
             main$.setShowSubjects(false);

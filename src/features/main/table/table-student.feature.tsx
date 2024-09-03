@@ -45,7 +45,6 @@ export const TableStudentFeature: FC<TableStudentFeatureProps> = observer((props
       <Stack flexDirection="row" gap="15px" justifyContent="center" flexWrap="wrap">
         {shedules.map((s) => {
           const dayOfWeek = DayOfWeek[new Date(s.date).getDay()];
-          console.log(new Date(+new Date(s.date) + 3 * 60 * 60 * 1000).getDay(), s.date);
 
           return (
             <Card sx={{ padding: '15px 10px', width: '100%' }} key={s.date}>
@@ -60,8 +59,8 @@ export const TableStudentFeature: FC<TableStudentFeatureProps> = observer((props
               </Stack>
               <Divider />
               {s.subjects.map((sub, index) => {
-                const name = sub.name ? sub.name : sub.place.includes('Спортзал') ? 'Физ-ра' : null;
-                const isDangerous = sub.teacher.includes('Емельянов');
+                const name = sub.name ? sub.name : sub.place?.includes('Спортзал') ? 'Физ-ра' : null;
+                const isDangerous = sub.teacher?.includes('Емельянов');
 
                 return (
                   <Stack
