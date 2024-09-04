@@ -57,7 +57,6 @@ export const TableTeacherFeature: FC<TableTeacherFeatureProps> = observer((props
       if (DayOfWeek[prevDayIndex + 1] !== dayOfWeek) {
         const subjects = new Array(6).fill({}).map((v, i) => ({
           index: i + 1,
-
         }));
         arr.splice(i, 0, {
           date: new Date(+new Date(s.date) - 24 * 60 * 60 * 1000).toISOString().slice(0, 10),
@@ -71,7 +70,6 @@ export const TableTeacherFeature: FC<TableTeacherFeatureProps> = observer((props
     } else {
       const subjects = new Array(6).fill({}).map((v, i) => ({
         index: i + 1,
-
       }));
       arr.splice(0, 0, {
         date: new Date(+new Date(s.date) - 24 * 60 * 60 * 1000).toISOString().slice(0, 10),
@@ -110,23 +108,44 @@ export const TableTeacherFeature: FC<TableTeacherFeatureProps> = observer((props
           </Button>
         </Stack>
       )}
+
       <Stack gap="15px" justifyContent="flex-start" mb="20px">
         {shedules.map((s) => {
           const dayOfWeek = DayOfWeek[new Date(s.date).getDay()];
 
           return (
             <>
-              <Stack flexDirection="row" gap="20px" minHeight="102px" alignItems="center" key={s.date}>
+              <Stack
+                flexDirection="row"
+                gap="20px"
+                minHeight="102px"
+                alignItems="center"
+                key={s.date}
+              >
                 <Typography sx={{ maxWidth: '90px' }} variant="subtitle2">
                   {dayOfWeek} {formatDate(s.date)}
                 </Typography>
                 {s.subjects.map((sub, index) => {
                   const name = sub.name ? sub.name : null;
+                  const color =
+                    sub.type === 'Лекции'
+                      ? 'rgb(67%, 86%, 68%)'
+                      : sub.type === 'Практические (семинарские) занятия'
+                      ? 'rgb(92%, 75%, 46%)'
+                      : sub.type === 'Лабораторные работы'
+                      ? 'rgb(62%, 64%, 95%)'
+                      : 'none';
 
                   if (name) {
                     return (
                       <Card
-                        sx={{ padding: '15px 10px', width: '16%', minHeight: '122px', minWidth: '200px' }}
+                        sx={{
+                          padding: '15px 10px',
+                          width: '16%',
+                          minHeight: '122px',
+                          minWidth: '200px',
+                          bgcolor: `${color}`,
+                        }}
                         key={sub.index}
                       >
                         <Stack>
@@ -140,10 +159,7 @@ export const TableTeacherFeature: FC<TableTeacherFeatureProps> = observer((props
                             <Divider orientation="vertical" flexItem variant="middle" />
                             <Typography className={$.subjcetCaption}>{sub.place}</Typography>
                           </Stack>
-                          <Typography
-                            sx={{ textDecoration: 'underline' }}
-                            className={$.subjcetCaption}
-                          >
+                          <Typography sx={{ color: 'black' }} className={$.subjcetCaption}>
                             {sub.type}
                           </Typography>
                           <Typography className={$.subjectName}>{name}</Typography>
@@ -154,13 +170,23 @@ export const TableTeacherFeature: FC<TableTeacherFeatureProps> = observer((props
                   }
 
                   return (
-                    <Card key={sub.index} sx={{ padding: '15px 10px', width: '16%', minHeight: '122px', minWidth: '200px' }}>
+                    <Card
+                      key={sub.index}
+                      sx={{
+                        padding: '15px 10px',
+                        width: '16%',
+                        minHeight: '122px',
+                        minWidth: '200px',
+                      }}
+                    >
                       <Typography>Нет пар</Typography>
                     </Card>
                   );
                 })}
               </Stack>
-              { dayOfWeek === DayOfWeek[6] ? <Divider sx={{ borderColor: '#606060' }} flexItem variant="fullWidth" /> : null}
+              {dayOfWeek === DayOfWeek[6] ? (
+                <Divider sx={{ borderColor: '#606060' }} flexItem variant="fullWidth" />
+              ) : null}
             </>
           );
         })}

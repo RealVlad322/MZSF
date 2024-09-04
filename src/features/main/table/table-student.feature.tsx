@@ -29,7 +29,7 @@ export const TableStudentFeature: FC<TableStudentFeatureProps> = observer((props
             // sx={{ mt: '20px', alignSelf: 'center' }}
             variant="outlined"
           >
-          След неделя
+            След неделя
           </Button>
           <Button
             onClick={() => {
@@ -38,7 +38,7 @@ export const TableStudentFeature: FC<TableStudentFeatureProps> = observer((props
             // sx={{ mt: '20px', alignSelf: 'center' }}
             variant="outlined"
           >
-          назад
+            назад
           </Button>
         </Stack>
       )}
@@ -59,13 +59,25 @@ export const TableStudentFeature: FC<TableStudentFeatureProps> = observer((props
               </Stack>
               <Divider />
               {s.subjects.map((sub, index) => {
-                const name = sub.name ? sub.name : sub.place?.includes('Спортзал') ? 'Физ-ра' : null;
+                const name = sub.name
+                  ? sub.name
+                  : sub.place?.includes('Спортзал')
+                  ? 'Физ-ра'
+                  : null;
                 const isDangerous = sub.teacher?.includes('Емельянов');
+                const color =
+                  sub.type === 'Лекции'
+                    ? 'rgb(67%, 86%, 68%)'
+                    : sub.type === 'Практические (семинарские) занятия'
+                    ? 'rgb(92%, 75%, 46%)'
+                    : sub.type === 'Лабораторные работы'
+                    ? 'rgb(62%, 64%, 95%)'
+                    : 'none';
 
                 return (
                   <Stack
                     mb={index + 1 === s.subjects.length ? undefined : '10px'}
-                    sx={{ backgroundColor: isDangerous ? 'rgb(255, 0, 0, 0.5)' : undefined }}
+                    sx={{ backgroundColor: isDangerous ? 'rgb(255, 0, 0, 0.5)' : color }}
                     key={sub.index}
                   >
                     <Stack flexDirection="row" gap="5px" alignItems="center">
