@@ -21,7 +21,7 @@ export const TableStudentFeature: FC<TableStudentFeatureProps> = observer((props
   return (
     <div className={$.test}>
       {!!shedules.length && (
-        <Stack flexDirection="row" gap="5px" mb="20px" alignItems="center">
+        <Stack flexDirection="row" gap="5px" mb="20px" alignItems="center" flexWrap="wrap">
           <Button
             onClick={() => {
               void main$.loadShedulesNextWeek();
@@ -40,6 +40,31 @@ export const TableStudentFeature: FC<TableStudentFeatureProps> = observer((props
           >
             назад
           </Button>
+          {/* <Button
+            onClick={ async () => {
+              await main$.loadShedulesToomorrow();
+            }}
+            // sx={{ mt: '20px', alignSelf: 'center' }}
+            variant="outlined"
+          >
+            завтра
+          </Button> */}
+          <Stack alignItems="center" flexDirection="row" flexWrap="wrap" gap="15px">
+            <Stack flexDirection="row" alignItems="center">
+              {' '}
+              <div className={`${$.colorIcon}  ${$.colorIconLectures}`}></div>
+              <Typography>Лекции</Typography>
+            </Stack>
+            <Stack flexDirection="row" alignItems="center">
+              <div className={`${$.colorIcon}  ${$.colorIconPractice}`}></div>
+              <Typography>Практические (семинарские) занятия</Typography>
+            </Stack>
+            <Stack flexDirection="row" alignItems="center">
+              {' '}
+              <div className={`${$.colorIcon}  ${$.colorIconLaboratory}`}></div>
+              <Typography>Лабораторные работы</Typography>
+            </Stack>
+          </Stack>
         </Stack>
       )}
       <Stack flexDirection="row" gap="15px" justifyContent="center" flexWrap="wrap">
@@ -62,17 +87,17 @@ export const TableStudentFeature: FC<TableStudentFeatureProps> = observer((props
                 const name = sub.name
                   ? sub.name
                   : sub.place?.includes('Спортзал')
-                  ? 'Физ-ра'
-                  : null;
+                    ? 'Физ-ра'
+                    : null;
                 const isDangerous = sub.teacher?.includes('Емельянов');
                 const color =
                   sub.type === 'Лекции'
                     ? 'rgb(67%, 86%, 68%)'
                     : sub.type === 'Практические (семинарские) занятия'
-                    ? 'rgb(92%, 75%, 46%)'
-                    : sub.type === 'Лабораторные работы'
-                    ? 'rgb(62%, 64%, 95%)'
-                    : 'none';
+                      ? 'rgb(92%, 75%, 46%)'
+                      : sub.type === 'Лабораторные работы'
+                        ? 'rgb(62%, 64%, 95%)'
+                        : 'none';
 
                 return (
                   <Stack

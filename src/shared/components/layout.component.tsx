@@ -15,7 +15,18 @@ export const Layout: FC<LayoutProps> = observer((props) => {
       <div className={$.main}>
         <Outlet />
       </div>
-      <div className={$.footer}>Created by <Link target="_blank" href="https://t.me/therealyou322">@therealyou322</Link> <Typography variant="caption">Пишитие по всем вопросам</Typography></div>
+      <div className={$.footer}>
+        Created by{' '}
+        <Link target="_blank" href="https://t.me/therealyou322">
+          @therealyou322{' '}
+        </Link>{' '}
+        &{' '}
+        <Link target="_blank" href="https://t.me/Dieze0375">
+          @Dieze0375{' '}
+        </Link>{' '}
+        <br />
+        <Typography variant="caption">Будем благодарны, если поможете с оплатой сервера</Typography>
+      </div>
     </>
   );
 });
