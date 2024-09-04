@@ -1,15 +1,16 @@
 .main {
 	padding: 15px;
-	// height: 100vh;
+	// height: 95vh;
+
 }
 
 .footer {
 	background-color: #f9f9f9;
-	z-index: 12;
-	position: fixed;
-	padding-left: 15px;
 	border-top: 1px solid #e2e2e2;
+	bottom: 0;
+	padding-left: 15px;
+	position: fixed;
 	// height: 35px;
 	width: 100%;
-	bottom: 0;
+	z-index: 12;
 }

@@ -85,7 +85,7 @@ export const TableTeacherFeature: FC<TableTeacherFeatureProps> = observer((props
   return (
     <div className={$.test}>
       {!!shedules.length && (
-        <Stack flexDirection="row" gap="5px" pl="15px" mb="20px" alignItems="center">
+        <Stack flexDirection="row" gap="10px" pl="15px" mb="20px" alignItems="center" flexWrap="wrap">
           {!fullSem && (
             <Button
               onClick={() => {
@@ -106,6 +106,22 @@ export const TableTeacherFeature: FC<TableTeacherFeatureProps> = observer((props
           >
             назад
           </Button>
+          <Stack alignItems="center" flexDirection="row" flexWrap="wrap" gap="15px">
+            <Stack flexDirection="row" alignItems="center">
+              {' '}
+              <div className={`${$.colorIcon}  ${$.colorIconLectures}`}></div>
+              <Typography>Лекции</Typography>
+            </Stack>
+            <Stack flexDirection="row" alignItems="center">
+              <div className={`${$.colorIcon}  ${$.colorIconPractice}`}></div>
+              <Typography>Практические (семинарские) занятия</Typography>
+            </Stack>
+            <Stack flexDirection="row" alignItems="center">
+              {' '}
+              <div className={`${$.colorIcon}  ${$.colorIconLaboratory}`}></div>
+              <Typography>Лабораторные работы</Typography>
+            </Stack>
+          </Stack>
         </Stack>
       )}
 
@@ -131,10 +147,10 @@ export const TableTeacherFeature: FC<TableTeacherFeatureProps> = observer((props
                     sub.type === 'Лекции'
                       ? 'rgb(67%, 86%, 68%)'
                       : sub.type === 'Практические (семинарские) занятия'
-                      ? 'rgb(92%, 75%, 46%)'
-                      : sub.type === 'Лабораторные работы'
-                      ? 'rgb(62%, 64%, 95%)'
-                      : 'none';
+                        ? 'rgb(92%, 75%, 46%)'
+                        : sub.type === 'Лабораторные работы'
+                          ? 'rgb(62%, 64%, 95%)'
+                          : 'none';
 
                   if (name) {
                     return (
@@ -142,7 +158,7 @@ export const TableTeacherFeature: FC<TableTeacherFeatureProps> = observer((props
                         sx={{
                           padding: '15px 10px',
                           width: '16%',
-                          minHeight: '122px',
+                          minHeight: '135px',
                           minWidth: '200px',
                           bgcolor: `${color}`,
                         }}
@@ -175,7 +191,7 @@ export const TableTeacherFeature: FC<TableTeacherFeatureProps> = observer((props
                       sx={{
                         padding: '15px 10px',
                         width: '16%',
-                        minHeight: '122px',
+                        minHeight: '135px',
                         minWidth: '200px',
                       }}
                     >
@@ -184,9 +200,9 @@ export const TableTeacherFeature: FC<TableTeacherFeatureProps> = observer((props
                   );
                 })}
               </Stack>
-              {dayOfWeek === DayOfWeek[6] ? (
-                <Divider sx={{ borderColor: '#606060' }} flexItem variant="fullWidth" />
-              ) : null}
+              {dayOfWeek === DayOfWeek[6]
+                ? <Divider sx={{ borderColor: '#606060' }} flexItem variant="fullWidth" />
+                : null}
             </>
           );
         })}
