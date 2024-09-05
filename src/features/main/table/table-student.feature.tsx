@@ -31,15 +31,7 @@ export const TableStudentFeature: FC<TableStudentFeatureProps> = observer((props
           >
             След неделя
           </Button>
-          <Button
-            onClick={() => {
-              main$.setShowSubjects(false);
-            }}
-            // sx={{ mt: '20px', alignSelf: 'center' }}
-            variant="outlined"
-          >
-            назад
-          </Button>
+
           {/* <Button
             onClick={ async () => {
               await main$.loadShedulesToomorrow();
@@ -131,15 +123,7 @@ export const TableStudentFeature: FC<TableStudentFeatureProps> = observer((props
         >
           След неделя
         </Button>
-        <Button
-          onClick={() => {
-            main$.setShowSubjects(false);
-          }}
-          sx={{ mt: '20px', alignSelf: 'center' }}
-          variant="outlined"
-        >
-          назад
-        </Button>
+
       </Stack>
     </div>
   );

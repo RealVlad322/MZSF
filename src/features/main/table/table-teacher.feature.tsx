@@ -85,7 +85,14 @@ export const TableTeacherFeature: FC<TableTeacherFeatureProps> = observer((props
   return (
     <div className={$.test}>
       {!!shedules.length && (
-        <Stack flexDirection="row" gap="10px" pl="15px" mb="20px" alignItems="center" flexWrap="wrap">
+        <Stack
+          flexDirection="row"
+          gap="10px"
+          pl="15px"
+          mb="20px"
+          alignItems="center"
+          flexWrap="wrap"
+        >
           {!fullSem && (
             <Button
               onClick={() => {
@@ -97,15 +104,6 @@ export const TableTeacherFeature: FC<TableTeacherFeatureProps> = observer((props
               След неделя
             </Button>
           )}
-          <Button
-            onClick={() => {
-              main$.setShowSubjects(false);
-            }}
-            // sx={{ mt: '20px', alignSelf: 'center' }}
-            variant="outlined"
-          >
-            назад
-          </Button>
           <Stack alignItems="center" flexDirection="row" flexWrap="wrap" gap="15px">
             <Stack flexDirection="row" alignItems="center">
               {' '}
@@ -120,6 +118,11 @@ export const TableTeacherFeature: FC<TableTeacherFeatureProps> = observer((props
               {' '}
               <div className={`${$.colorIcon}  ${$.colorIconLaboratory}`}></div>
               <Typography>Лабораторные работы</Typography>
+            </Stack>
+            <Stack flexDirection="row" alignItems="center">
+              {' '}
+              <div className={`${$.colorIcon}  ${$.colorIconProdPractice}`}></div>
+              <Typography>Производственная практика</Typography>
             </Stack>
           </Stack>
         </Stack>
@@ -150,7 +153,9 @@ export const TableTeacherFeature: FC<TableTeacherFeatureProps> = observer((props
                         ? 'rgb(92%, 75%, 46%)'
                         : sub.type === 'Лабораторные работы'
                           ? 'rgb(62%, 64%, 95%)'
-                          : 'none';
+                          : sub.type === 'Производственная практика '
+                            ? 'rgb(92%, 55%, 55%)'
+                            : 'none';
 
                   if (name) {
                     return (
@@ -167,17 +172,25 @@ export const TableTeacherFeature: FC<TableTeacherFeatureProps> = observer((props
                         <Stack>
                           <Stack flexDirection="row" gap="5px" alignItems="center">
                             <Typography className={$.subjectIndex}>{sub.index} Пара</Typography>
-                            <Divider orientation="vertical" flexItem variant="middle" />
+                            <Divider
+                              orientation="vertical"
+                              flexItem
+                              variant="middle"
+                              sx={{ borderColor: `Maroon` }}
+                            />
                             {/* <Typography className={$.subjectIndex}>
                             {s.grade}-{s.group} {s.name}
                           </Typography> */}
                             <Typography className={$.subjectIndex}>{sub.groupName}</Typography>
-                            <Divider orientation="vertical" flexItem variant="middle" />
+                            <Divider
+                              orientation="vertical"
+                              flexItem
+                              variant="middle"
+                              sx={{ borderColor: `Maroon` }}
+                            />
                             <Typography className={$.subjcetCaption}>{sub.place}</Typography>
                           </Stack>
-                          <Typography sx={{ color: 'black' }} className={$.subjcetCaption}>
-                            {sub.type}
-                          </Typography>
+                          <Typography className={$.subjcetCaption}>{sub.type}</Typography>
                           <Typography className={$.subjectName}>{name}</Typography>
                           {/* {index === s.subjects.length - 1 ? null : <Divider />} */}
                         </Stack>
@@ -219,15 +232,6 @@ export const TableTeacherFeature: FC<TableTeacherFeatureProps> = observer((props
             След неделя
           </Button>
         )}
-        <Button
-          onClick={() => {
-            main$.setShowSubjects(false);
-          }}
-          sx={{ mt: '20px', alignSelf: 'center' }}
-          variant="outlined"
-        >
-          назад
-        </Button>
       </Stack>
     </div>
   );
