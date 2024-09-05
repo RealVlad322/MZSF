@@ -97,7 +97,7 @@ export const TableTeacherFeature: FC<TableTeacherFeatureProps> = observer((props
             <Stack flexDirection="row" alignItems="center">
               {' '}
               <div className={`${$.colorIcon}  ${$.colorIconLectures}`}></div>
-              <Typography>Лекции</Typography>
+              <Typography>Лекции</Typography> 
             </Stack>
             <Stack flexDirection="row" alignItems="center">
               <div className={`${$.colorIcon}  ${$.colorIconPractice}`}></div>
