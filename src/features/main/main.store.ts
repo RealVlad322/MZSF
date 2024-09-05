@@ -1,6 +1,8 @@
-import { Directions } from '@/shared/contract/api/types';
+
+import { Directions, type test } from '@/shared/contract/api/types';
 import { SettingsTabs, SheduleService } from '@/shared/contract/services';
 import { type SheduleType } from '@/shared/contract/services/types';
+import { StorageAgent } from '@/shared/lib';
 import { endOfTomorrow, endOfWeek, startOfToday, startOfTomorrow, startOfWeek } from 'date-fns';
 import { injectable } from 'inversify';
 import { makeAutoObservable } from 'mobx';
@@ -18,12 +20,53 @@ export class MainStore {
   startTimeStamp: string = startOfToday().toISOString();
   endTimeStamp: string = startOfToday().toISOString();
   settingsTab: SettingsTabs = SettingsTabs.STUDENT;
-  constructor(private readonly shedule$$: SheduleService) {
+  constructor(private readonly shedule$$: SheduleService, private readonly storage$$: StorageAgent) {
     makeAutoObservable(this);
+
+    const storageGetData = this.storage$$.get<test>('scheduleCache');
+
+    if (storageGetData) {
+      if (storageGetData.grade) {
+        this.setGrade(storageGetData.grade);
+      }
+
+      if (storageGetData.groupName) {
+        this.setName(storageGetData.groupName);
+      }
+
+      if (storageGetData.group) {
+        this.setGroup(storageGetData.group);
+      }
+
+      if (storageGetData.teacher) {
+        this.setTeacherName(storageGetData.teacher);
+      }
+
+      if (storageGetData.startTimeStamp) {
+        this.setStartTimeStamp(storageGetData.startTimeStamp);
+      }
+
+      if (storageGetData.endTimeStamp) {
+        this.setEndTimeStamp(storageGetData.endTimeStamp);
+      }
+
+      if (storageGetData.fullSem !== undefined) {
+        this.setFullSem(storageGetData.fullSem);
+      }
+
+      if (storageGetData.settingTab !== undefined) {
+        this.setSettingsTab(storageGetData.settingTab);
+      }
+
+      void this.loadShedules(this.startTimeStamp, this.endTimeStamp);
+
+      this.setShowSubjects(true);
+    }
   }
 
   setShowSubjects(bool: boolean): void {
     this.showSubjects = bool;
+    this.storage$$.delete('scheduleCache');
 
     if (!this.showSubjects) {
       this.setFullSem(false);
@@ -53,7 +96,7 @@ export class MainStore {
     this.grade = grade;
   }
 
-  setgroup(group: number): void {
+  setGroup(group: number): void {
     this.group = group;
   }
 
@@ -115,6 +158,18 @@ export class MainStore {
     });
 
     this.shedules = result;
+
+    this.storage$$.set('scheduleCache', {
+      grade: this.settingsTab === SettingsTabs.STUDENT ? this.grade : undefined,
+      groupName: this.settingsTab === SettingsTabs.STUDENT ? this.name : undefined,
+      group: this.settingsTab === SettingsTabs.STUDENT ? this.group : undefined,
+      teacher: this.settingsTab === SettingsTabs.TEACHER ? this.teacherName : undefined,
+      startTimeStamp: startTimeStamp ? startTimeStamp : this.startTimeStamp,
+      endTimeStamp: endTimeStamp ? endTimeStamp : this.endTimeStamp,
+      sortByDate: Directions.DESC,
+      settingTab: this.settingsTab,
+      fullSem: this.fullSem,
+    });
   }
 
   // написание разных методов(к примеру получить данные)

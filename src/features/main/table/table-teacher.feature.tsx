@@ -93,17 +93,6 @@ export const TableTeacherFeature: FC<TableTeacherFeatureProps> = observer((props
           alignItems="center"
           flexWrap="wrap"
         >
-          {!fullSem && (
-            <Button
-              onClick={() => {
-                void main$.loadShedulesNextWeek();
-              }}
-              // sx={{ mt: '20px', alignSelf: 'center' }}
-              variant="outlined"
-            >
-              След неделя
-            </Button>
-          )}
           <Stack alignItems="center" flexDirection="row" flexWrap="wrap" gap="15px">
             <Stack flexDirection="row" alignItems="center">
               {' '}
@@ -128,7 +117,7 @@ export const TableTeacherFeature: FC<TableTeacherFeatureProps> = observer((props
         </Stack>
       )}
 
-      <Stack gap="15px" justifyContent="flex-start" mb="20px">
+      <Stack gap="15px" justifyContent="flex-start" mb="20px" >
         {shedules.map((s) => {
           const dayOfWeek = DayOfWeek[new Date(s.date).getDay()];
 
@@ -138,12 +127,15 @@ export const TableTeacherFeature: FC<TableTeacherFeatureProps> = observer((props
                 flexDirection="row"
                 gap="20px"
                 minHeight="102px"
-                alignItems="center"
+                // alignItems="center"
                 key={s.date}
               >
-                <Typography sx={{ maxWidth: '90px' }} variant="subtitle2">
-                  {dayOfWeek} {formatDate(s.date)}
-                </Typography>
+                <Stack alignItems="center" justifyContent="center">
+                  <Typography sx={{ maxWidth: '90px' }} variant="subtitle2">
+                    {dayOfWeek} {formatDate(s.date)}
+                  </Typography>
+                </Stack>
+
                 {s.subjects.map((sub, index) => {
                   const name = sub.name ? sub.name : null;
                   const color =
