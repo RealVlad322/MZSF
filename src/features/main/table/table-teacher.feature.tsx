@@ -104,7 +104,6 @@ export const TableTeacherFeature: FC<TableTeacherFeatureProps> = observer((props
               След неделя
             </Button>
           )}
-
           <Stack alignItems="center" flexDirection="row" flexWrap="wrap" gap="15px">
             <Stack flexDirection="row" alignItems="center">
               {' '}
