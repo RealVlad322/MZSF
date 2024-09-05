@@ -27,6 +27,7 @@ export class MainStore {
 
     if (!this.showSubjects) {
       this.setFullSem(false);
+      this.shedules = [];
     }
   }
 

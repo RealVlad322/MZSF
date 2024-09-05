@@ -33,50 +33,7 @@ export const SettingsTeacherFeature: FC<SettingsTeacherFeatureProps> = observer(
         </FormControl>
       </Stack>
       <Stack>
-        <Stack flexDirection="row" alignItems="center" gap="10px" mb="15px">
-          <Button
-            className={$.buttons}
-            variant="outlined"
-            onClick={() => {
-              void main$.loadShedulesThisWeek();
-              main$.setShowSubjects(true);
-            }}
-          >
-            Эта неделя
-          </Button>
-          <Button
-            className={$.buttons}
-            variant="outlined"
-            onClick={() => {
-              void main$.loadShedulesNextWeek();
-              main$.setShowSubjects(true);
-            }}
-          >
-            След неделя
-          </Button>
-        </Stack>
-        <Stack flexDirection="row" alignItems="center" mb="15px" gap="10px">
-          <Button
-            className={$.buttons}
-            variant="outlined"
-            onClick={() => {
-              void main$.loadShedulesToday();
-              main$.setShowSubjects(true);
-            }}
-          >
-            Сегодня
-          </Button>
-          <Button
-            className={$.buttons}
-            variant="outlined"
-            onClick={() => {
-              void main$.loadShedulesToomorrow();
-              main$.setShowSubjects(true);
-            }}
-          >
-            Завтра
-          </Button>
-        </Stack>
+
         <Stack flexDirection="row" alignItems="center" gap="10px">
           <Button
             className={$.buttons}
