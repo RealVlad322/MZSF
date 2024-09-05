@@ -2,7 +2,7 @@ import '@abraham/reflection';
 
 import { SheduleApiService } from '@/shared/contract';
 import { SheduleService } from '@/shared/contract/services';
-import { HttpAgent, ToastAgent } from '@/shared/lib';
+import { HttpAgent, StorageAgent, ToastAgent } from '@/shared/lib';
 import { Container } from 'inversify';
 import getDecorators from 'inversify-inject-decorators';
 
@@ -14,6 +14,7 @@ export const { lazyInject } = getDecorators(container);
 
 container.bind(HttpAgent).toSelf().inTransientScope();
 container.bind(ToastAgent).toSelf();
+container.bind(StorageAgent).toSelf();
 
 container.bind(SheduleApiService).toSelf();
 container.bind(SheduleService).toSelf();

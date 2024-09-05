@@ -54,7 +54,7 @@ export const SettingsStudentFeature: FC<SettingsStudentFeatureProps> = observer(
             value={main$.group}
             label="Группа"
             onChange={(e) => {
-              main$.setgroup(+e.target.value);
+              main$.setGroup(+e.target.value);
             }}
           >
             {GROUP_SELECT_ITEMS.map((dir) => (

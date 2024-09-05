@@ -1,3 +1,5 @@
+import { type SettingsTabs } from '../services';
+
 export interface LoginDto {
   email: string;
 
@@ -107,4 +109,9 @@ export interface SheduleGetListDto {
 export enum Directions {
   ASC = 'asc',
   DESC = 'desc',
+}
+
+export interface test extends SheduleGetListDto {
+  fullSem?: boolean;
+  settingTab?: SettingsTabs;
 }
