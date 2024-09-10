@@ -15,7 +15,7 @@ export class MainStore {
   fullSem: boolean = false;
   teacherName: string = 'Сбитнев А.В.';
   grade: number = 4;
-  name: string = 'БИТ211';
+  name: string = 'БИС';
   group: number = 1;
   startTimeStamp: string = startOfToday().toISOString();
   endTimeStamp: string = startOfToday().toISOString();
@@ -148,8 +148,7 @@ export class MainStore {
 
   private async loadShedules(startTimeStamp?: string, endTimeStamp?: string, isTeacher?: boolean): Promise<void> {
     const result = await this.shedule$$.getList({
-      grade: this.settingsTab === SettingsTabs.STUDENT ? this.grade : undefined,
-      groupName: this.settingsTab === SettingsTabs.STUDENT ? this.name : undefined,
+      groupName: this.settingsTab === SettingsTabs.STUDENT ? this.name + this.grade : undefined,
       group: this.settingsTab === SettingsTabs.STUDENT ? this.group : undefined,
       teacher: this.settingsTab === SettingsTabs.TEACHER ? this.teacherName : undefined,
       startTimeStamp: startTimeStamp ? startTimeStamp : this.startTimeStamp,
@@ -160,8 +159,7 @@ export class MainStore {
     this.shedules = result;
 
     this.storage$$.set('scheduleCache', {
-      grade: this.settingsTab === SettingsTabs.STUDENT ? this.grade : undefined,
-      groupName: this.settingsTab === SettingsTabs.STUDENT ? this.name : undefined,
+      groupName: this.settingsTab === SettingsTabs.STUDENT ? this.name + this.grade : undefined,
       group: this.settingsTab === SettingsTabs.STUDENT ? this.group : undefined,
       teacher: this.settingsTab === SettingsTabs.TEACHER ? this.teacherName : undefined,
       startTimeStamp: startTimeStamp ? startTimeStamp : this.startTimeStamp,
