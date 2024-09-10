@@ -159,7 +159,7 @@ export class MainStore {
     this.shedules = result;
 
     this.storage$$.set('scheduleCache', {
-      groupName: this.settingsTab === SettingsTabs.STUDENT ? this.name + this.grade : undefined,
+      groupName: this.settingsTab === SettingsTabs.STUDENT ? this.name : undefined,
       group: this.settingsTab === SettingsTabs.STUDENT ? this.group : undefined,
       teacher: this.settingsTab === SettingsTabs.TEACHER ? this.teacherName : undefined,
       startTimeStamp: startTimeStamp ? startTimeStamp : this.startTimeStamp,
