@@ -141,7 +141,7 @@ export const TableTeacherFeature: FC<TableTeacherFeatureProps> = observer((props
                   const color =
                     sub.type === 'Лекции'
                       ? 'rgb(67%, 86%, 68%)'
-                      : sub.type === 'Практические (семинарские) занятия'
+                      : sub.type === 'Практические (семинарские) занятия' || sub.type === 'Аудиторные занятия'
                         ? 'rgb(92%, 75%, 46%)'
                         : sub.type === 'Лабораторные работы'
                           ? 'rgb(62%, 64%, 95%)'
